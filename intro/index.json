@@ -1,0 +1,34 @@
+{
+  "title": "Image Vulnerability Scanning",
+  "description": "Use trivy to scan images for known vulnerabilities",
+  "details": {
+    "steps": [
+      {
+        "title": "Use trivy to scan images for known vulnerabilities",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "intro": {
+      "text": "init/init.md",
+      "background": "init/background.sh",
+      "foreground": "init/foreground.sh",
+      "credits": ""
+    },
+    "assets": {
+      "host01": [
+        {"file": "init.sh", "target": "/ks", "chmod": "+x"},
+        {"file": "k8s.sh", "target": "/ks", "chmod": "+x"},
+        {"file": "wait-init.sh", "target": "/ks", "chmod": "+x"},
+        {"file": "init.yaml", "target": "/ks", "chmod": "+x"},
+        {"file": "solution.sh", "target": "/var/run/kc-internal", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "kubernetes-cks-1node"
+  }
+}

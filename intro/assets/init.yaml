@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: applications
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: infra
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: testing
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web1
+  name: web1
+  namespace: applications
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: web1
+    spec:
+      containers:
+      - image: nginx:1.19.1-alpine-perl
+        name: nginx
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web2
+  name: web2
+  namespace: applications
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web2
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: web2
+    spec:
+      containers:
+      - image: nginx:1.20.2-alpine
+        name: nginx
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: inf-hjk
+  name: inf-hjk
+  namespace: infra
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: inf-hjk
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: inf-hjk
+    spec:
+      containers:
+      - image: httpd:2.4.39-alpine
+        name: httpd
+        resources: {}
